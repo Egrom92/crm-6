@@ -1,7 +1,7 @@
-import React, { useEffect, useState } from "react";
 import { statuses } from "../../data";
 import { NavLink } from "react-router-dom";
 import {getDateValue} from '../../helpers'
+import hc from "../../hc";
 
 
 import Table from "../../components/Table";
@@ -12,6 +12,18 @@ const statusClass = {
   back: "badge-danger",
   archived: "badge-dark"
 };
+
+const sendOrderToHistory = (order) => {
+
+  const viewedOrder = {
+    order
+  }
+
+  console.log(viewedOrder)
+
+  Promise.resolve()
+      .then(()=> hc.post('/messages', viewedOrder))
+}
 
 export default function Orders(props) {
   const { orders, products } = props;
@@ -48,6 +60,7 @@ export default function Orders(props) {
       render(order) {
         return (
           <NavLink
+              onClick={() => sendOrderToHistory(order.id)}
             to={`/order/${order.id}`}
             className="btn btn-outline-primary btn-sm"
           >

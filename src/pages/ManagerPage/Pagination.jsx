@@ -1,50 +1,58 @@
-import React from 'react'
-import hc from '../../hc';
+import React, {useState, useEffect } from 'react'
 
 
-export default function Pagination(props) {
-    const {pageSelect, page, pages} = props;
-    const pagination = [];
+export default function Pagination({count, limit, query, onPageChange}) {
+
+    const [activePage, setActivePage] = useState( '');
+
+    const pagination = []
+
+    const numberOfPages = count / limit;
+
+    useEffect(()=> {
+        onPageChange(activePage)
+    },[activePage, onPageChange])
 
 
-    console.log(hc.getAndCount("/orders"))
+    // for (let i = 1; i <= numberOfPages; i++) {
+    //     console.log(i)
+    //     pagination.push(
+    //         <li key={i} className="page-item">
+    //             <a
+    //                 onClick={setActivePage(numberOfPages)}
+    //                 className="page-link"
+    //             >{i}</a>
+    //         </li>
+    //     )
+    // }
 
-    for (let i = 0; i <= pages; i++) {
 
-        let span = '';
-        let p = i;
-        if (i === 0 ) {
-            span = 'Назад';
-            p = page - 1;
-        } else if (i === pages) {
-            span = 'Вперед';
-            p = page + 1;
-        } else {
-            span = i
-        }
-
-        const li = (
-            <li key={i} className={`page-item ${
-                i === page ? 'active' : '' }`} onClick={() => pageSelect(p)}>
-                <span className={'page-link'}>
-                    {span}
-                </span>
-            </li>
-        )
-        pagination.push(li)
-    }
     return (
         <nav aria-label="Page navigation example">
             <ul className="pagination justify-content-center">
-                <li className="page-item disabled">
-                    <span className="page-link"
-                          tabIndex="-1"
-                          aria-disabled="true"
-                    >Назад</span>
+                <li key={1} className="page-item">
+                    <a
+                        onClick={setActivePage(1)}
+                        className="page-link"
+                    >{1}</a>
                 </li>
-                {pagination}
-                <li className="page-item">
-                    <span className="page-link">Вперед</span>
+                <li key={2} className="page-item">
+                    <a
+                        onClick={setActivePage(2)}
+                        className="page-link"
+                    >{2}</a>
+                </li>
+                <li key={3} className="page-item">
+                    <a
+                        onClick={setActivePage(3)}
+                        className="page-link"
+                    >{3}</a>
+                </li>
+                <li key={4} className="page-item">
+                    <a
+                        onClick={setActivePage(4)}
+                        className="page-link"
+                    >{4}</a>
                 </li>
             </ul>
         </nav>

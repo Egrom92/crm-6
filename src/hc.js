@@ -1,6 +1,6 @@
 import HttpClient from "./HttpClient";
 
-const LIMIT = 20;
+const LIMIT = 5;
 
 const hc = new HttpClient({
   protocol: "https",

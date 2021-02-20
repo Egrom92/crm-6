@@ -1,5 +1,4 @@
 import React, { useEffect, useState } from "react";
-import PropTypes from "prop-types";
 import { NavLink, useParams, useHistory } from "react-router-dom";
 import hc from "../hc";
 import { statuses } from "../data";
@@ -46,10 +45,7 @@ export default function OrderPage(props) {
 
     Promise.resolve()
       .then(() => hc.patch(`/orders/${id}`, order))
-      .then(() => props.onSave(id))
       .then(() => history.push("/"));
-    // .then(() => hc.get("/orders", { _limit: 1000 }))
-    // .then((orders) => setOrders(orders));
   };
 
   const deleteOrder = (e) => {
@@ -166,13 +162,3 @@ export default function OrderPage(props) {
     </main>
   );
 }
-
-OrderPage.propTypes = {
-  onSave: PropTypes.func.isRequired,
-  onDelete: PropTypes.func.isRequired
-};
-
-OrderPage.defaultProps = {
-  onSave: () => {},
-  onDelete: () => {}
-};

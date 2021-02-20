@@ -8,11 +8,11 @@ export default function OrderFilter({
                                         statuses,
                                         onFiltersChange
                                     }) {
-    const [productId, setProductId] = useState(query.productId || "");
-    const [status, setStatus] = useState(query.status || "");
-    const [fullname, setFullname] = useState(query.fullname || "");
+    const [productId, setProductId] = useState(query.productId || '');
+    const [status, setStatus] = useState(query.status || '');
+    const [fullname, setFullname] = useState(query.fullname || '');
     const [createdAt, setCreatedAt] = useState(query.createdAt || '');
-  
+
 
     useEffect(() => {
         onFiltersChange({
